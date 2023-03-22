@@ -14,6 +14,10 @@ const protect = asyncHandler(async (req, res, next) => {
             //Get user from token
             req.user = await User.findById(decoded.id).select('-password'); // everything except password and put it in user property of req object
 
+            if (!req.user) {
+                res.status(401);
+                throw new Error('Not authorized');
+            }
             next() //run next middleware
         } catch (error) {
             console.log(error);
