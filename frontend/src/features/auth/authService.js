@@ -9,9 +9,7 @@ export const register = async (userData) => {
     if(response.data){
         localStorage.setItem('user', JSON.stringify(response.data))
     }
-
-    console.log(response);
-    console.log(response.data);
+    
     return response.data;
 }
 
