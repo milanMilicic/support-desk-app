@@ -1,7 +1,8 @@
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
-const router = require('./routes/userRoutes');
+const userRouter = require('./routes/userRoutes');
+const ticketRouter = require('./routes/ticketRoutes');
 const errorHandler = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db')
 
@@ -19,7 +20,8 @@ app.get('/', (req, res) => {
     res.send('Hello');
 })
 
-app.use('/api/users', router);
+app.use('/api/users', userRouter);
+app.use('/api/tickets', ticketRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
