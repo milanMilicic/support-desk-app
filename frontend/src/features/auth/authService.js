@@ -9,14 +9,28 @@ export const register = async (userData) => {
     if(response.data){
         localStorage.setItem('user', JSON.stringify(response.data))
     }
-    
+
     return response.data;
 }
 
-/* register({name: 'Milan', email: 'milan@test.com', password: '123'}); */
+//Login
+export const login = async (userData) => {
+    const response = await axios.post(API_URL + '/login', userData);
+
+    if(response.data){
+        localStorage.setItem('user', JSON.stringify(response.data))
+    }
+
+    return response.data;
+}
+
+//Logout
+const logout = () => localStorage.removeItem('user');
 
 const authService = {
     register,
+    logout,
+    login,
 }
 
 export default authService;
