@@ -3,7 +3,6 @@ import axios from 'axios'
 const API_URL = '/api/tickets';
 
 export const createTicket = async (ticketData, token) => {
-    console.log('radi iz service');
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
