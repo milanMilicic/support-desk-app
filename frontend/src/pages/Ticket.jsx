@@ -1,14 +1,15 @@
 import { useSelector, useDispatch } from "react-redux"
-import {getTicket, reset} from '../features/tickets/ticketSlice'
+import {getTicket, reset, closeTicket} from '../features/tickets/ticketSlice'
 import BackButton from "../components/BackButton"
 import Spinner from "../components/Spinner"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { toast } from "react-toastify"
 
 function Ticket() {
   const {ticket, isLoading, isSuccess, isError, message} = useSelector(state => state.tickets);
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,6 +20,12 @@ function Ticket() {
     dispatch(getTicket(params.ticketId));
     //eslint-disable-next-line
   }, [isError, message, params.ticketId])
+
+  const onTicketClose = () => {
+    dispatch(closeTicket(params.ticketId));
+    toast.success('Ticket closed');
+    navigate('/tickets');
+  }
 
   if(isLoading){
     return <Spinner />
@@ -34,12 +41,17 @@ function Ticket() {
         <BackButton url='/tickets' />
         <h2>Ticket ID: {ticket._id} <span className={`status status-${ticket.status}`}>{ticket.status}</span></h2>
         <h3>Date Submitted: {new Date(ticket.createdAt).toLocaleString('en-RS')}</h3>
+        <h3>Product: {ticket.product}</h3>
         <hr />
         <div className="ticket-desc">
           <h3>Description of Issue</h3>
           <p>{ticket.description}</p>
         </div>
       </header>
+
+      {ticket.status !== 'closed' && (
+        <button onClick={onTicketClose} className="btn btn-block btn-danger">Close ticket</button>
+      )}
     </div>
   )
 }
