@@ -9,6 +9,7 @@ import NewTicket from './pages/NewTicket';
 import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
 import PrivateRoute from './components/PrivateRoute';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='/ticket/:ticketId' element={<PrivateRoute />} >
               <Route path='/ticket/:ticketId' element={<Ticket />} />
             </Route>
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
       </Router>
