@@ -6,7 +6,7 @@ import NoteItem from "../components/NoteItem"
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { toast } from "react-toastify"
-import { getNotes, reset as notesReset } from "../features/notes/noteSlice"
+import { getNotes, createNote, reset as notesReset } from "../features/notes/noteSlice"
 import Modal from 'react-modal'
 import { FaPlus } from "react-icons/fa"
 import { useState } from "react"
@@ -54,13 +54,16 @@ function Ticket() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Submit');
+    dispatch(createNote({noteText, ticketId: params.ticketId}))
     closeModal();
   }
 
   //Open/close modal
   const openModal = () => setModalIsOpen(true)
-  const closeModal = () => setModalIsOpen(false)
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setNoteText('');
+  } 
 
   if(isLoading || notesLoading){
     return <Spinner />
