@@ -75,6 +75,12 @@ const getMe = asyncHandler(async (req, res) => {
     res.status(200).json(user);
 })
 
+//For Admin
+const getUsers = asyncHandler(async (req, res) => {
+    const users = await User.find({}).select('-password');
+    res.status(200).json(users);
+})
+
 //Generate token
 function generateToken(id){
     return jwt.sign({id}, process.env.JWT_SECRET, {
@@ -85,5 +91,6 @@ function generateToken(id){
 module.exports = {
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    getUsers
 }
