@@ -128,6 +128,18 @@ const updateTicket = asyncHandler(async (req, res) => {
     res.status(200).json(updatedTicket);
 })
 
+// For Admin
+const getAllTickets = asyncHandler(async (req, res) => {
+    const tickets = await Ticket.find({status: 'new'})
+
+    if(!tickets){
+        res.status(404);
+        throw new Error('Tickets not found');
+    }
+
+    res.status(200).json(tickets);
+})
+
 
 module.exports = {
     getTickets,
@@ -135,4 +147,5 @@ module.exports = {
     createTicket,
     deleteTicket,
     updateTicket,
+    getAllTickets
 }
