@@ -1,7 +1,10 @@
-import { FaQuestionCircle, FaTicketAlt  } from "react-icons/fa"
+import { FaQuestionCircle, FaTicketAlt, FaUsers  } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { useAdminStatus } from "../hooks/useAdminStatus";
 
 function Home() {
+  const {isAdmin} = useAdminStatus();
+
   return (
     <>
       <section className="heading">
@@ -9,12 +12,14 @@ function Home() {
         <p>Please choose from an option below</p>
       </section>
 
-      <Link to="/new-ticket" className="btn btn-reverse btn-block">
+      {isAdmin ? (<Link to="/admin/users" className="btn btn-reverse btn-block">
+        <FaUsers /> View users
+      </Link>) : (<Link to="/new-ticket" className="btn btn-reverse btn-block">
         <FaQuestionCircle /> Create new ticket
-      </Link>
+      </Link>)}
 
       <Link to="/tickets" className="btn btn-block">
-        <FaTicketAlt /> View my tickets
+        <FaTicketAlt /> View {isAdmin ? '' : 'my'} tickets
       </Link>
     </>
   )
