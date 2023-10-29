@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice'
 import ticketReducer from '../features/tickets/ticketSlice'
 import noteReducer from '../features/notes/noteSlice'
+import userReducer from '../features/users/userSlice'
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     tickets: ticketReducer,
-    notes: noteReducer
+    notes: noteReducer,
+    users: userReducer
   },
 });
