@@ -208,6 +208,8 @@ h3 {
   font-size: 1.3rem;
 }
 
+.user,
+.user-headings,
 .ticket,
 .ticket-headings {
   display: grid;
@@ -222,6 +224,12 @@ h3 {
   text-align: center;
 }
 
+.user,
+.user-headings {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.user-headings,
 .ticket-headings {
   font-weight: 700;
 }
