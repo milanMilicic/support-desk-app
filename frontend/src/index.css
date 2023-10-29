@@ -255,6 +255,20 @@ h3 {
   border-radius: 10px;
 }
 
+.status-true {
+  background-color: seagreen;
+  color: #fff;
+  border-radius: 10px;
+  width: 120px;
+}
+
+.status-false {
+  background-color: dodgerblue;
+  color: #fff;
+  border-radius: 10px;
+  width: 120px;
+}
+
 .ticket-page {
   position: relative;
   text-align: left;
