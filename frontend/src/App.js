@@ -30,6 +30,9 @@ function App() {
             <Route path='/ticket/:ticketId' element={<PrivateRoute />} >
               <Route path='/ticket/:ticketId' element={<Ticket />} />
             </Route>
+            <Route path='/admin/users' element={<AdminRoute />} >
+              <Route path='/admin/users' element={<Users />} />
+            </Route>
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
