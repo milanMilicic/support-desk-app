@@ -10,6 +10,8 @@ import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
 import PrivateRoute from './components/PrivateRoute';
 import PageNotFound from './pages/PageNotFound';
+import Users from './pages/Users';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
