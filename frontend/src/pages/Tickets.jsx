@@ -21,7 +21,7 @@ function Tickets() {
 
     useEffect(() => {
         {user.isAdmin ? dispatch(getAdminTickets()) : dispatch(getTickets())}
-    }, [dispatch])
+    }, [dispatch, user.isAdmin])
 
     if(isLoading){
         return <Spinner />
