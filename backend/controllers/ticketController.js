@@ -118,14 +118,16 @@ const updateTicket = asyncHandler(async (req, res) => {
         throw new Error('Ticket not found');
     }
 
-    if(ticket.user.toString() !== req.user.id){
+
+    if(req.user.isAdmin || ticket.user.toString() === req.user.id){
+        const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, { new: true});
+        res.status(200).json(updatedTicket);
+
+    } else {
         res.status(401);
         throw new Error('Not authorized');
     }
 
-    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, { new: true});
-
-    res.status(200).json(updatedTicket);
 })
 
 // For Admin
